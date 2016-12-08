@@ -1,5 +1,9 @@
 package com.example;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,9 +62,45 @@ public class MyClass {
 //        String id = calendar.getTimeZone().getID();
 //        System.out.println(id);
         int[] sessionTypes = {1, 2, 3, 4, 6, 80};
-        int sessionType=1;
+        int sessionType = 1;
 
-        System.out.println(showEar(sessionTypes,sessionType));
+        System.out.println(showEar(sessionTypes, sessionType));
+
+        //三目运算的数据类型是相同的，也就是说后面返回的结果和第一个数的类型是一致的！！！第一个数是double，所以返回的结果也会是double，即1.0。
+        Double d = 1.01;
+        System.out.println(d > 1 ? d.intValue() : d); // 1.0
+
+
+        System.out.println(DateUtils.getCurrentTimeInString());
+
+        String temp = "bed & breakfast";
+        /*try {
+            temp= URLEncoder.encode(temp, "UTF-8");
+            System.out.println(temp);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }*/
+        String temp2;
+        try {
+            temp2 = URLEncoder.encode(temp, "UTF-8");
+            System.out.println(temp2);
+            temp2 = URLDecoder.decode(temp2, "UTF-8");
+            System.out.println(temp2);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+        String time="2016-12-05 19:15:00";
+        long time2=0;
+        try {
+            time2 = DateUtils.transferStringDateToLong(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(time2);
+
+        System.out.println(System.currentTimeMillis()<time2);
 
     }
 
@@ -73,10 +113,11 @@ public class MyClass {
         return false;
     }
 
-    private static class Mythread extends Thread{
+    private static class Mythread extends Thread {
         private int i;
+
         public Mythread(int i) {
-            this.i=i;
+            this.i = i;
         }
 
         @Override

@@ -1,1 +1,1 @@
-include ':app', ':lib', ':vipabc_common'
+include ':app', ':lib', ':vipabc_common', ':sharesdk'
