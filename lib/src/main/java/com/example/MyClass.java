@@ -102,6 +102,11 @@ public class MyClass {
 
         System.out.println(System.currentTimeMillis()<time2);
 
+
+        int a=1;
+        int b=1;
+        System.out.println((a+=3)==(b=3+b));
+        System.out.println(3%9);
     }
 
     public static boolean showEar(int[] list, int temp) {
